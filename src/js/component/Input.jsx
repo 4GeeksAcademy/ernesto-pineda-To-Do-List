@@ -10,25 +10,34 @@ const Input = () => {
   ]);
   const [item, setItem] = useState("");
 
-  // Esta función maneja la eliminación de una tarea específica
-  const handleDelete = (index) => {
-    const updatedTodos = [...todos];
-    updatedTodos.splice(index, 1);
-    setTodos(updatedTodos);
-  };
 
-  // Esta función maneja el cambio en el input para agregar una nueva tarea
-  const handleChange = (event) => {
-    setItem(event.target.value);
-  };
+// Esta función maneja la eliminación de una tarea específica
+const handleDelete = (index) => {
+  // Crea una copia del array de tareas
+  const updatedTodos = [...todos];
+  // Elimina la tarea en la posición 'index' del array copiado
+  updatedTodos.splice(index, 1);
+  // Actualiza el estado de las tareas con el nuevo array sin la tarea eliminada
+  setTodos(updatedTodos);
+};
 
-  // Esta función maneja la presión de la tecla Enter para agregar una nueva tarea
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter" && item.trim() !== "") {
-      setTodos([...todos, { label: item, isDone: false }]);
-      setItem("");
-    }
-  };
+// Esta función maneja el cambio en el input para agregar una nueva tarea
+const handleChange = (event) => {
+  // Actualiza el estado 'item' con el valor del input
+  setItem(event.target.value);
+};
+
+// Esta función maneja la presión de la tecla Enter para agregar una nueva tarea
+const handleKeyPress = (event) => {
+  // Verifica si la tecla presionada es 'Enter' y si el input no está vacío
+  if (event.key === "Enter" && item.trim() !== "") {
+    // Agrega una nueva tarea al array de tareas con el contenido del input
+    setTodos([...todos, { label: item, isDone: false }]);
+    // Limpia el input
+    setItem("");
+  }
+};
+
 
   return (
     <>
